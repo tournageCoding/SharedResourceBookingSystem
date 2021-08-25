@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
-<head><title>Database test page (New GitHub)</title>
+<head><title>Database test page</title>
 <style>
 th { text-align: left; }
 
@@ -16,9 +16,9 @@ th, td {
 </head>
 
 <body>
-<h1>Database test page</h1>
+<h1>Database test page(test #2)</h1>
 
-<p>Showing contents of papers table:</p>
+<p>Showing contents of papers table(test#3):</p>
 
 <table border="1">
 <tr><th>Paper code</th><th>Paper name</th></tr>
