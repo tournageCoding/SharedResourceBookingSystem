@@ -18,6 +18,8 @@ th, td {
 <body>
 <h1>Database test page</h1>
 
+<p>Showing contents of papers table:</p>
+
 <?php
  
 $db_host   = '192.168.2.12';
@@ -28,19 +30,18 @@ $db_passwd = 'insecure_db_pw';
 $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 
-$code = $_POST["code"];
 $name = $_POST["name"];
+$court = $_POST["court"];
+$session = $_POST["session"];
 
-$sql = "INSERT INTO papers (code, name)
-VALUES ('$code', '$name')";
+$sql = "INSERT INTO booked_sessions (name, court, session)
+VALUES ('$name', '$court', '$session')";
 
 $pdo->exec($sql);
 ?>
 
-<p>Showing contents of papers table:</p>
-
 <table border="1">
-<tr><th>Paper code</th><th>Paper name</th></tr>
+<tr><th>Name</th><th>Court</th><th>Date and Time</th></tr>
 
 <?php
  
@@ -53,25 +54,28 @@ $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 
-$q = $pdo->query("SELECT * FROM papers");
+$q = $pdo->query("SELECT * FROM booked_sessions");
 
 while($row = $q->fetch()){
-  echo "<tr><td>".$row["code"]."</td><td>".$row["name"]."</td></tr>\n";
+  echo "<tr><td>".$row["name"]."</td><td>".$row["court"]."</td><td>".$row["session"]."</td></tr>\n";
 }
 
 ?>
 </table>
 
-Please enter a paper code and name.
+Please enter your name, a court number and the time you wish to book.
 
 <form action="index.php" method="POST">
-Code: <input type="text" name="code"><br>
 Name: <input type="text" name="name"><br>
+Count Number: <input type="number" name="court" min="1" max="2"><br>
+Date and Time: <input type="text" name="session"
+		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" required><br>
 <input type="submit">
 </form>
 
-<!Welcome <?php echo $_POST["code"]; ?><br>.
-<!Your email address is: <?php echo $_POST["name"]; ?>.
+Welcome <?php echo $_POST["name"]; ?><br>
+Court: <?php echo $_POST["court"]; ?><br>
+Session: <?php echo $_POST["session"]; ?>
 
 </body>
 </html>

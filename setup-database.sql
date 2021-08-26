@@ -1,6 +1,6 @@
 CREATE TABLE booked_sessions (
   name varchar(50) NOT NULL,
-  court int NOT NULL CHECK (court == 1 OR court == 2),
+  court int NOT NULL,
   session DATETIME NOT NULL,
   PRIMARY KEY (court, session)
 );
