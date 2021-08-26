@@ -52,5 +52,21 @@ E-mail: <input type="text" name="email"><br>
 Welcome <?php echo $_POST["name"]; ?><br>
 Your email address is: <?php echo $_POST["email"]; ?>
 
+<?php
+ 
+$db_host   = '192.168.2.12';
+$db_name   = 'fvision';
+$db_user   = 'webuser';
+$db_passwd = 'insecure_db_pw';
+
+$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
+$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
+
+$sql = "INSERT INTO papers (code, name)
+VALUES ('COSC342', 'test')";
+
+$pdo->exec($sql);
+?>
+
 </body>
 </html>
