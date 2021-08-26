@@ -16,9 +16,28 @@ th, td {
 </head>
 
 <body>
-<h1>Database test page(test #2)</h1>
+<h1>Database test page</h1>
 
-<p>Showing contents of papers table(test#3):</p>
+<?php
+ 
+$db_host   = '192.168.2.12';
+$db_name   = 'fvision';
+$db_user   = 'webuser';
+$db_passwd = 'insecure_db_pw';
+
+$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
+$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
+
+$code = $_POST["code"];
+$name = $_POST["name"];
+
+$sql = "INSERT INTO papers (code, name)
+VALUES ('$code', '$name')";
+
+$pdo->exec($sql);
+?>
+
+<p>Showing contents of papers table:</p>
 
 <table border="1">
 <tr><th>Paper code</th><th>Paper name</th></tr>
@@ -43,30 +62,16 @@ while($row = $q->fetch()){
 ?>
 </table>
 
+Please enter a paper code and name.
+
 <form action="index.php" method="POST">
+Code: <input type="text" name="code"><br>
 Name: <input type="text" name="name"><br>
-E-mail: <input type="text" name="email"><br>
 <input type="submit">
 </form>
 
-Welcome <?php echo $_POST["name"]; ?><br>
-Your email address is: <?php echo $_POST["email"]; ?>
-
-<?php
- 
-$db_host   = '192.168.2.12';
-$db_name   = 'fvision';
-$db_user   = 'webuser';
-$db_passwd = 'insecure_db_pw';
-
-$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
-$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
-
-$sql = "INSERT INTO papers (code, name)
-VALUES ('COSC342', 'test')";
-
-$pdo->exec($sql);
-?>
+<!Welcome <?php echo $_POST["code"]; ?><br>.
+<!Your email address is: <?php echo $_POST["name"]; ?>.
 
 </body>
 </html>
