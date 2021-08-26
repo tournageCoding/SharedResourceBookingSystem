@@ -43,16 +43,14 @@ while($row = $q->fetch()){
 ?>
 </table>
 
-<?php if (isset($_POST[form_submitted])): ?>
-	Welcome <?php echo $_post["name"]; ?><br>
-	Your email address is: <?php echo $_post["email"]; ?>
-<?php else: ?>
-	<form action="welcome.php" method="post">
-	Name: <input type:"text" name="name"><br>
-	Email: <input type="text" name="email">
-	<input type="hidden" name="form_submitted" value="1" />
-	<input type="submit" value="Submit">
-<?php endif; ?>
+<form action="index.php" method="POST">
+Name: <input type="text" name="name"><br>
+E-mail: <input type="text" name="email"><br>
+<input type="submit">
 </form>
+
+Welcome <?php echo $_POST["name"]; ?><br>
+Your email address is: <?php echo $_POST["email"]; ?>
+
 </body>
 </html>
