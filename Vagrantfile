@@ -37,10 +37,10 @@ Vagrant.configure("2") do |config|
       apt-get install -y apache2 php libapache2-mod-php php-mysql
             
       # Change VM's webserver's configuration to use shared folder.
-      # (Look inside test-website.conf for specifics.)
-      cp /vagrant/test-website.conf /etc/apache2/sites-available/
+      # (Look inside userWebsite.conf for specifics.)
+      cp /vagrant/userWebsite.conf /etc/apache2/sites-available/
       # activate our website configuration ...
-      a2ensite test-website
+      a2ensite userWebsite
       # ... and disable the default website provided with Apache
       a2dissite 000-default
       # Reload the webserver configuration, to pick up our changes
@@ -74,10 +74,10 @@ Vagrant.configure("2") do |config|
       apt-get install -y apache2 php libapache2-mod-php php-mysql
             
       # Change VM's webserver's configuration to use shared folder.
-      # (Look inside test-website.conf for specifics.)
-      cp /vagrant/test-website.conf /etc/apache2/sites-available/
+      # (Look inside adminWebsite.conf for specifics.)
+      cp /vagrant/adminWebsite.conf /etc/apache2/sites-available/
       # activate our website configuration ...
-      a2ensite test-website
+      a2ensite adminWebsite
       # ... and disable the default website provided with Apache
       a2dissite 000-default
       # Reload the webserver configuration, to pick up our changes
