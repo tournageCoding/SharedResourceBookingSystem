@@ -18,7 +18,7 @@ th, td {
 <body>
 <h1>Pallet Town Court Booking</h1>
 
-<p>Booked sessions:</p>
+<p style="font-size:20px"><b>Booked sessions:</b></p>
 
 <!-- Send booking to database when form is recieved. -->
 <?php
@@ -41,6 +41,7 @@ VALUES ('$name', '$court', '$session')";
 $pdo->exec($sql);
 ?>
 
+<!-- Display bookings from database in a table. -->
 <table border="1">
 <tr><th>Name</th><th>Court</th><th>Date and Time</th></tr>
 
@@ -62,9 +63,9 @@ while($row = $q->fetch()){
 }
 
 ?>
-</table><br>
+</table>
 
-Please enter your name, a court number and the time you wish to book.<br><br>
+<p>Please enter your name, a court number and the time you wish to book.</p>
 
 <form action="index.php" method="POST">
 Name: <input type="text" name="name"><br><br>
@@ -73,5 +74,11 @@ Date and Time: <input type="text" name="session"
 		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" required><br><br>
 <input type="submit">
 </form>
+
+<p style="font-size:20px"><b>Club Notices:</b></p>
+<?php
+echo file_get_contents("resources/notices.txt");
+?>
+
 </body>
 </html>
