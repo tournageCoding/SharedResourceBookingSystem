@@ -21,6 +21,26 @@ th, td {
 
 <p style="font-size:20px"><b>Booked sessions:</b></p>
 
+<!-- Delete booking from database when form is recieved. -->
+<?php
+ 
+$db_host   = '192.168.2.12';
+$db_name   = 'fvision';
+$db_user   = 'webuser';
+$db_passwd = 'insecure_db_pw';
+
+$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
+$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
+
+$name = $_POST["nameD"];
+$court = $_POST["courtD"];
+$session = $_POST["sessionD"];
+
+$sql = "DELETE FROM booked_sessions WHERE name='$name' AND court='$court' AND session='$session'";
+
+$pdo->exec($sql);
+?>
+
 <!-- Display bookings from database in a table. -->
 <table border="1">
 <tr><th>Name</th><th>Court</th><th>Date and Time</th></tr>
@@ -36,7 +56,7 @@ $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 
-$q = $pdo->query("SELECT * FROM booked_sessions");
+$q = $pdo->query("SELECT * FROM booked_sessions ORDER BY session ASC");
 
 while($row = $q->fetch()){
   echo "<tr><td>".$row["name"]."</td><td>".$row["court"]."</td><td>".$row["session"]."</td></tr>\n";
@@ -44,33 +64,14 @@ while($row = $q->fetch()){
 ?>
 </table>
 
-<?php
+<p>Please enter the exact name, court number and time of the booking you wish to delete.</p>
 
-// configuration
-// $url = 'http://example.com/backend/editor.php';
-$file = '/resources/notices.txt';
-
-// check if form has been submitted
-if (isset($_POST['text']))
-{
-    // save the text contents
-    file_put_contents($file, $_POST['text']);
-
-    // redirect to form again
-    // header(sprintf('Location: %s', $url));
-    // printf('<a href="%s">Moved</a>.', htmlspecialchars($url));
-    exit();
-}
-
-// read the textfile
-$text = file_get_contents($file);
-
-?>
-<!-- HTML form -->
-<form action="" method="post">
-<textarea name="text"><?php echo htmlspecialchars($text) ?></textarea>
-<input type="submit" />
-<input type="reset" />
+<form action="" method="POST">
+Name: <input type="text" name="nameD"><br><br>
+Court Number: <input type="number" name="courtD" min="1" max="2"><br><br>
+Date and Time: <input type="text" name="sessionD"
+		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" required><br><br>
+<input type="submit">
 </form>
 
 <p style="font-size:20px"><b>Club Notices:</b></p>
