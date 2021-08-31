@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
-<head><title>Database test page</title>
+<head><title>UserWebsite</title>
 <style>
 th { text-align: left; }
 
