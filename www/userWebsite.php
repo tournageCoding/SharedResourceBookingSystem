@@ -16,10 +16,11 @@ th, td {
 </head>
 
 <body>
-<h1>Database test page</h1>
+<h1>Pallet Town Court Booking</h1>
 
-<p>Showing contents of papers table:</p>
+<p>Booked sessions:</p>
 
+<!-- Send booking to database when form is recieved. -->
 <?php
  
 $db_host   = '192.168.2.12';
@@ -61,21 +62,16 @@ while($row = $q->fetch()){
 }
 
 ?>
-</table>
+</table><br>
 
-Please enter your name, a court number and the time you wish to book.
+Please enter your name, a court number and the time you wish to book.<br><br>
 
 <form action="index.php" method="POST">
-Name: <input type="text" name="name"><br>
-Count Number: <input type="number" name="court" min="1" max="2"><br>
+Name: <input type="text" name="name"><br><br>
+Count Number: <input type="number" name="court" min="1" max="2"><br><br>
 Date and Time: <input type="text" name="session"
-		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" required><br>
+		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" required><br><br>
 <input type="submit">
 </form>
-
-Welcome <?php echo $_POST["name"]; ?><br>
-Court: <?php echo $_POST["court"]; ?><br>
-Session: <?php echo $_POST["session"]; ?>
-
 </body>
 </html>
