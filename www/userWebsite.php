@@ -18,8 +18,6 @@ th, td {
 <body>
 <h1>Pallet Town Court Booking</h1>
 
-<p style="font-size:20px"><b>Booked sessions:</b></p>
-
 <!-- Send booking to database when form is recieved. -->
 <?php
  
@@ -41,11 +39,14 @@ VALUES ('$name', '$court', '$session')";
 $pdo->exec($sql);
 ?>
 
-<!-- Display bookings from database for Court 1 in a table. -->
+<p style="font-size:20px"><b>Booked sessions:</b></p>
+
+<!-- Display bookings from database in a table. -->
 <table border="1">
-<tr><th>Court 1</th></tr>
+<tr><th>Court</th><th>Date and Time</th></tr>
 
 <?php
+ 
 $db_host   = '192.168.2.12';
 $db_name   = 'fvision';
 $db_user   = 'webuser';
@@ -55,32 +56,10 @@ $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 
-$q = $pdo->query("SELECT * FROM booked_sessions WHERE court='1' ORDER BY session ASC");
+$q = $pdo->query("SELECT * FROM booked_sessions ORDER BY session ASC");
 
 while($row = $q->fetch()){
-  echo "<tr><td>".$row["session"]."</td></tr>\n";
-}
-?>
-</table>
-
-<!-- Display bookings from database for Court 2 in a table. -->
-<table border="1">
-<tr><th>Court 2</th></tr>
-
-<?php
-$db_host   = '192.168.2.12';
-$db_name   = 'fvision';
-$db_user   = 'webuser';
-$db_passwd = 'insecure_db_pw';
-
-$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
-
-$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
-
-$q = $pdo->query("SELECT * FROM booked_sessions WHERE court='2' ORDER BY session ASC");
-
-while($row = $q->fetch()){
-  echo "<tr><td>".$row["session"]."</td></tr>\n";
+  echo "<tr><td>".$row["court"]."</td><td>".$row["session"]."</td></tr>\n";
 }
 ?>
 </table>
