@@ -21,6 +21,27 @@ th, td {
 
 <p style="font-size:20px"><b>Booked sessions:</b></p>
 
+<!-- Send booking to database when form is recieved. -->
+<?php
+ 
+$db_host   = '192.168.2.12';
+$db_name   = 'fvision';
+$db_user   = 'webuser';
+$db_passwd = 'insecure_db_pw';
+
+$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
+$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
+
+$name = $_POST["nameI"];
+$court = $_POST["courtI"];
+$session = $_POST["sessionI"];
+
+$sql = "INSERT INTO booked_sessions (name, court, session)
+VALUES ('$name', '$court', '$session')";
+
+$pdo->exec($sql);
+?>
+
 <!-- Delete booking from database when form is recieved. -->
 <?php
  
@@ -63,6 +84,16 @@ while($row = $q->fetch()){
 }
 ?>
 </table>
+
+<p>Please enter the name, a court number and the time you wish to book for.</p>
+
+<form action="" method="POST">
+Name: <input type="text" name="nameI"><br><br>
+Court Number: <input type="number" name="courtI" min="1" max="2"><br><br>
+Date and Time: <input type="text" name="sessionI"
+		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" required><br><br>
+<input type="submit">
+</form>
 
 <p>Please enter the exact name, court number and time of the booking you wish to delete.</p>
 
