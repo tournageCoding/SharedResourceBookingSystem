@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
-<head><title>UserWebsite</title>
+<head><title>Pallet Town Court Booking</title>
 <style>
 th { text-align: left; }
 
@@ -46,7 +46,6 @@ $pdo->exec($sql);
 <tr><th>Name</th><th>Court</th><th>Date and Time</th></tr>
 
 <?php
- 
 $db_host   = '192.168.2.12';
 $db_name   = 'fvision';
 $db_user   = 'webuser';
@@ -61,13 +60,12 @@ $q = $pdo->query("SELECT * FROM booked_sessions");
 while($row = $q->fetch()){
   echo "<tr><td>".$row["name"]."</td><td>".$row["court"]."</td><td>".$row["session"]."</td></tr>\n";
 }
-
 ?>
 </table>
 
 <p>Please enter your name, a court number and the time you wish to book.</p>
 
-<form action="index.php" method="POST">
+<form action="" method="POST">
 Name: <input type="text" name="name"><br><br>
 Count Number: <input type="number" name="court" min="1" max="2"><br><br>
 Date and Time: <input type="text" name="session"
