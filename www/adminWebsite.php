@@ -60,6 +60,24 @@ $sql = "DELETE FROM booked_sessions WHERE name='$name' AND court='$court' AND se
 $pdo->exec($sql);
 ?>
 
+<!-- Delete notice from database when form is recieved. -->
+<?php
+ 
+$db_host   = '192.168.2.12';
+$db_name   = 'fvision';
+$db_user   = 'webuser';
+$db_passwd = 'insecure_db_pw';
+
+$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
+$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
+
+$id = $_POST["idD"];
+
+$sql = "DELETE FROM notices WHERE id='$id'";
+
+$pdo->exec($sql);
+?>
+
 <p style="font-size:20px"><b>Booked sessions:</b></p>
 
 <!-- Display bookings from database in a table. -->
@@ -120,13 +138,20 @@ $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 
-$q = $pdo->query("SELECT * FROM notices");
+$q = $pdo->query("SELECT * FROM notices ORDER BY id ASC");
 
 while($row = $q->fetch()){
   echo "<tr><td>".$row["id"]."</td><td>".$row["title"]."</td><td>".$row["body"]."</td></tr>\n";
 }
 ?>
 </table>
+
+<p>Please enter the ID of the notice you wish to delete.</p>
+
+<form action="" method="POST">
+ID: <input type="number" name="idD"><br><br>
+<input type="submit">
+</form>
 
 </body>
 </html>
