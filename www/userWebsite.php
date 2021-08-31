@@ -41,7 +41,6 @@ $pdo->exec($sql);
 
 <p style="font-size:20px"><b>Booked sessions:</b></p>
 
-<!-- Display bookings from database in a table. -->
 <table border="1">
 <tr><th>Court</th><th>Date and Time</th></tr>
 
@@ -75,9 +74,28 @@ Date and Time: <input type="text" name="session"
 </form>
 
 <p style="font-size:20px"><b>Club Notices:</b></p>
+
+<!-- Display bookings from database in a table. -->
+<table border="1">
+ <tr><th>Title</th><th>Body</th></tr>
+  
 <?php
-echo file_get_contents("resources/notices.txt");
+$db_host   = '192.168.2.12';
+$db_name   = 'fvision';
+$db_user   = 'webuser';
+$db_passwd = 'insecure_db_pw';
+
+$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
+
+$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
+
+$q = $pdo->query("SELECT * FROM notices");
+
+while($row = $q->fetch()){
+  echo "<tr><td>".$row["title"]."</td><td>".$row["body"]."</td></tr>\n";
+}
 ?>
+</table>
 
 </body>
 </html>

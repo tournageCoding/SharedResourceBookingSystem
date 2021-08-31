@@ -19,8 +19,6 @@ th, td {
   
 <h1>Pallet Town Court Booking (Administrator Mode)</h1>
 
-<p style="font-size:20px"><b>Booked sessions:</b></p>
-
 <!-- Send booking to database when form is recieved. -->
 <?php
  
@@ -61,6 +59,8 @@ $sql = "DELETE FROM booked_sessions WHERE name='$name' AND court='$court' AND se
 
 $pdo->exec($sql);
 ?>
+
+<p style="font-size:20px"><b>Booked sessions:</b></p>
 
 <!-- Display bookings from database in a table. -->
 <table border="1">
@@ -107,6 +107,9 @@ Date and Time: <input type="text" name="sessionD"
 
 <p style="font-size:20px"><b>Club Notices:</b></p>
 
+<!-- Display bookings from database in a table. -->
+<table border="1">
+<tr><th>ID</th><th>Title</th><th>Body</th></tr>
 <?php
 $db_host   = '192.168.2.12';
 $db_name   = 'fvision';
@@ -123,6 +126,7 @@ while($row = $q->fetch()){
   echo "<tr><td>".$row["id"]."</td><td>".$row["title"]."</td><td>".$row["body"]."</td></tr>\n";
 }
 ?>
+</table>
 
 </body>
 </html>
