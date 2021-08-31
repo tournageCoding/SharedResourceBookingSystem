@@ -19,7 +19,7 @@ th, td {
   
 <h1>Pallet Town Court Booking (Administrator Mode)</h1>
 
-<!-- Send booking to database when form is recieved. -->
+<!-- Use data from forms to interact with database. -->
 <?php
  
 $db_host   = '192.168.2.12';
@@ -30,52 +30,25 @@ $db_passwd = 'insecure_db_pw';
 $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 
-$name = $_POST["nameI"];
-$court = $_POST["courtI"];
-$session = $_POST["sessionI"];
+$nameI = $_POST["nameI"];
+$courtI = $_POST["courtI"];
+$sessionI = $_POST["sessionI"];
+$nameD = $_POST["nameD"];
+$courtD = $_POST["courtD"];
+$sessionD = $_POST["sessionD"];
 
-$sql = "INSERT INTO booked_sessions (name, court, session)
-VALUES ('$name', '$court', '$session')";
+$idD = $_POST["idD"];
 
-$pdo->exec($sql);
-?>
+$insertSession = "INSERT INTO booked_sessions (name, court, session)
+VALUES ('$nameI', '$courtI', '$sessionI')";
 
-<!-- Delete booking from database when form is recieved. -->
-<?php
- 
-$db_host   = '192.168.2.12';
-$db_name   = 'fvision';
-$db_user   = 'webuser';
-$db_passwd = 'insecure_db_pw';
+$deleteSession = "DELETE FROM booked_sessions WHERE name='$nameD' AND court='$courtD' AND session='$sessionD'";
 
-$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
-$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
+$deleteNotice = "DELETE FROM notices WHERE id='$idD'";
 
-$name = $_POST["nameD"];
-$court = $_POST["courtD"];
-$session = $_POST["sessionD"];
-
-$sql = "DELETE FROM booked_sessions WHERE name='$name' AND court='$court' AND session='$session'";
-
-$pdo->exec($sql);
-?>
-
-<!-- Delete notice from database when form is recieved. -->
-<?php
- 
-$db_host   = '192.168.2.12';
-$db_name   = 'fvision';
-$db_user   = 'webuser';
-$db_passwd = 'insecure_db_pw';
-
-$pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
-$pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
-
-$id = $_POST["idD"];
-
-$sql = "DELETE FROM notices WHERE id='$id'";
-
-$pdo->exec($sql);
+$pdo->exec($insertSession);
+$pdo->exec($deleteSession);
+$pdo->exec($deleteNotice);
 ?>
 
 <p style="font-size:20px"><b>Booked sessions:</b></p>
