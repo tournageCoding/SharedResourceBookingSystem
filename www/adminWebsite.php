@@ -38,17 +38,24 @@ $courtD = $_POST["courtD"];
 $sessionD = $_POST["sessionD"];
 
 $idD = $_POST["idD"];
+$idI = $_POST["idI"];
+$titleI = $_POST["titleI"];
+$bodyI = $_POST["bodyI"];
 
 $insertSession = "INSERT INTO booked_sessions (name, court, session)
 VALUES ('$nameI', '$courtI', '$sessionI')";
 
 $deleteSession = "DELETE FROM booked_sessions WHERE name='$nameD' AND court='$courtD' AND session='$sessionD'";
 
+$insertNotice = "INSERT INTO notices (id, title, body)
+VALUES ('$idI', '$titleI', '$bodyI')";
+
 $deleteNotice = "DELETE FROM notices WHERE id='$idD'";
 
 $pdo->exec($insertSession);
 $pdo->exec($deleteSession);
 $pdo->exec($deleteNotice);
+$pdo->exec($insertNotice);
 ?>
 
 <p style="font-size:20px"><b>Booked sessions:</b></p>
@@ -118,6 +125,15 @@ while($row = $q->fetch()){
 }
 ?>
 </table>
+
+<p>Please enter the ID, Title and Body of the notice you wish to add.</p>
+
+<form action="" method="POST">
+  ID: <input type="number" name="idI"><br><br>
+  Title: <input type="text" name="titleI"><br><br>
+  Body: <input type="text" name="bodyI"><br><br>
+<input type="submit">
+</form>
 
 <p>Please enter the ID of the notice you wish to delete.</p>
 
