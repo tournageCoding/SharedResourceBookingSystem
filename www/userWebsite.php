@@ -31,7 +31,7 @@ $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 
 $name = $_POST["name"];
 $court = $_POST["court"];
-$session = $_POST["session"];
+$session = $_POST["session"].":00";
 
 $sql = "INSERT INTO booked_sessions (name, court, session)
 VALUES ('$name', '$court', '$session')";
@@ -58,7 +58,7 @@ $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
 $q = $pdo->query("SELECT * FROM booked_sessions ORDER BY session ASC");
 
 while($row = $q->fetch()){
-  echo "<tr><td>".$row["court"]."</td><td>".$row["session"]."</td></tr>\n";
+  echo "<tr><td>".$row["court"]."</td><td>".substr($row["session"], 0, 16)."</td></tr>\n";
 }
 ?>
 </table>
@@ -69,7 +69,7 @@ while($row = $q->fetch()){
 Name: <input type="text" name="name"><br><br>
 Court Number: <input type="number" name="court" min="1" max="2"><br><br>
 Date and Time: <input type="text" name="session"
-		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}" required><br><br>
+		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" required><br><br>
 <input type="submit">
 </form>
 
