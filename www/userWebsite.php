@@ -69,7 +69,8 @@ while($row = $q->fetch()){
 Name: <input type="text" name="name"><br><br>
 Court Number: <input type="number" name="court" min="1" max="2"><br><br>
 Date and Time: <input type="text" name="session"
-		  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" required><br><br>
+		      pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}" required>
+<p style="font-size:12">YYYY-MM-DD HH:MM</p>
 <input type="submit">
 </form>
 

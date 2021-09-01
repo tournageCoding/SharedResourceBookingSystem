@@ -54,8 +54,8 @@ $deleteNotice = "DELETE FROM notices WHERE id='$idD'";
 
 $pdo->exec($insertSession);
 $pdo->exec($deleteSession);
-$pdo->exec($deleteNotice);
 $pdo->exec($insertNotice);
+$pdo->exec($deleteNotice);
 ?>
 
 <p style="font-size:20px"><b>Booked sessions:</b></p>
