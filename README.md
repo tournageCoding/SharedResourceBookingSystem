@@ -17,6 +17,7 @@ The video below shows how to:
 * Delete a court booking
 * Add a notice
 * Delete a notice
+In that order.
 
 https://user-images.githubusercontent.com/64759337/131928831-11c4de66-c951-429e-85cf-7900df810070.mp4
 
