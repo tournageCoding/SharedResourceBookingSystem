@@ -12,7 +12,7 @@ This booking system is set up using three separate virtual machines.
 
 ## How to use
 The video below shows how to: 
-Markup : - Make a court booking (as a user)
-         - Test
+* Make a court booking (as a user)
+* Test
 https://user-images.githubusercontent.com/64759337/131928831-11c4de66-c951-429e-85cf-7900df810070.mp4
 
