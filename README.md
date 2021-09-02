@@ -11,5 +11,8 @@ This booking system is set up using three separate virtual machines.
 3. adminserver: This VM hosts the interface for admins to view who made what booking, delete bookings and update notices on the user web server. This VM reads data from dbserver (from the booked_sessions and notices tables). It can send data to the dbserver using an SQL INSERT or DELETE. It can INSERT and DELETE to/from the booked_sessions and notices tables.
 
 ## How to use
+The video below shows how to: 
+Markup : - Make a court booking (as a user)
+         - Test
 https://user-images.githubusercontent.com/64759337/131928831-11c4de66-c951-429e-85cf-7900df810070.mp4
 
