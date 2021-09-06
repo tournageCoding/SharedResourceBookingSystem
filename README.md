@@ -2,9 +2,10 @@
 A shared resource booking system with a web user interface, a web admin interface and a database.
 
 ## Set Up
-To run this project, ensure you have VirtualBox and Vagrant installed on your machine. Using a terminal, clone this repository and cd into it. Then type the command 'vagrant up'. Once the three virtual machines have been set up, go to your web browser of choice. To access the user interface, put 192.168.2.11 in the address bar. To access the admin interface, put 192.168.2.13 in the address bar.
+To run this project, ensure you have VirtualBox and Vagrant installed on your machine. Using a terminal, clone this repository and cd into it. Then type the command 'vagrant up'. Once the three virtual machines have been set up, go to your web browser of choice. To access the user interface, put 192.168.2.11 in the address bar. To access the administrator interface, put 192.168.2.13 in the address bar.
 
 ## How To Use
+Once 'vagrant up' has been run, general users can access the user interface (192.168.2.11) to check when courts have been booked, create a booking for themselves and read the club notices. Administrators would have access to the administrator mode (192.168.2.13) which allows them to see who has booked courts, add and delete bookings and add and delete notices.
 The video below shows how to: 
 * Make a court booking as a user
 * Make a court booking as an admin
